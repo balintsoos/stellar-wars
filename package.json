@@ -2,12 +2,15 @@
   "name": "stellar-wars",
   "version": "0.0.1",
   "private": false,
-  "description": "A small JavaScript game for Sci-fi geeks",
+  "description": "Turn-based Sci-Fi strategy game",
   "homepage": "https://github.com/balintsoos/stellar-wars#readme",
   "license": "MIT",
   "keywords": [
     "stellar",
     "wars",
+    "turn-based",
+    "sci-fi",
+    "strategy",
     "game"
   ],
   "author": {
@@ -36,7 +39,8 @@
   "scripts": {
     "start": "babel-node ./src/app",
     "lint": "eslint .; exit 0",
-    "test": "mocha ./src --recursive --compilers js:babel-register"
+    "unit-test": "mocha ./src/**/*.spec.js --compilers js:babel-register",
+    "test": "npm run lint; npm run unit-test"
   },
   "dependencies": {
     "chalk": "^1.1.3"

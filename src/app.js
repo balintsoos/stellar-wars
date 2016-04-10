@@ -1,5 +1,18 @@
 import Starship from './lib/starship'
 
-const ship = new Starship({})
+const enterprise = new Starship({
+  name: 'Enterprise'
+})
 
-console.log(ship.report())
+const borg = new Starship({
+  name: 'Borg Cube'
+})
+
+borg.set({
+  shield: 0,
+  hull: 1000,
+  recharge: 23
+})
+
+console.log(enterprise.report())
+console.log(borg.report())
