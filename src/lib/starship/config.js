@@ -2,7 +2,7 @@ const config = {
   name: 'Starship',
   hull: 100,
   shield: 100,
-  weapon: 20,
+  firepower: 20,
   energy: 100,
   recharge: 20
 }

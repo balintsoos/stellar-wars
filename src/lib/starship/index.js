@@ -1,3 +1,4 @@
+import utils from '../utils'
 import config from './config'
 
 export default class Starship {
@@ -6,7 +7,7 @@ export default class Starship {
     name = config.name,
     hull = config.hull,
     shield = config.shield,
-    weapon = config.weapon,
+    firepower = config.firepower,
     energy = config.energy,
     recharge = config.recharge
   } = {}) {
@@ -14,7 +15,7 @@ export default class Starship {
       name,
       hull,
       shield,
-      weapon,
+      firepower,
       energy,
       recharge
     }
@@ -28,7 +29,7 @@ export default class Starship {
     name = this.props.name,
     hull = this.props.hull,
     shield = this.props.shield,
-    weapon = this.props.weapon,
+    firepower = this.props.firepower,
     energy = this.props.energy,
     recharge = this.props.recharge
   } = {}) {
@@ -36,7 +37,7 @@ export default class Starship {
       name,
       hull,
       shield,
-      weapon,
+      firepower,
       energy,
       recharge
     }
@@ -48,6 +49,25 @@ export default class Starship {
 
   refresh(config) {
     this.set(config)
+  }
+
+  attack(enemy) {
+    const { firepower } = this.get()
+    enemy.damage(firepower)
+  }
+
+  damage(firepower) {
+    const { hull, shield } = this.get()
+
+    const damagedShield = utils.decreaseBy(shield, firepower)
+    const damagedHull = (shield - firepower) >= 0
+      ? hull
+      : utils.decreaseBy(hull, Math.abs(shield - firepower))
+
+    this.set({
+      hull: damagedHull,
+      shield: damagedShield
+    })
   }
 
 }

@@ -26,16 +26,16 @@ describe('Starship', () => {
           name: 'Enterprise',
           hull: 54,
           shield: 88,
-          weapon: 23,
+          firepower: 23,
           energy: 99
         })
         expect(ship.get()).to.deep.equal({
           name: 'Enterprise',
           hull: 54,
           shield: 88,
-          weapon: 23,
+          firepower: 23,
           energy: 99,
-          recharge: 20
+          recharge: defaultShip.recharge
         })
       })
     })
@@ -65,18 +65,53 @@ describe('Starship', () => {
           name: 'Enterprise',
           hull: 54,
           shield: 88,
-          weapon: 23,
+          firepower: 23,
           energy: 99
         })
         expect(ship.get()).to.deep.equal({
           name: 'Enterprise',
           hull: 54,
           shield: 88,
-          weapon: 23,
+          firepower: 23,
           energy: 99,
           recharge: 20
         })
       })
+    })
+  })
+
+  describe('#damage', () => {
+    let ship
+
+    beforeEach(() => {
+      ship = new Starship({ hull: 10, shield: 10 })
+    })
+
+    it('should decrease the value of shield only', () => {
+      ship.damage(5)
+
+      const { hull, shield } = ship.get()
+
+      expect(shield).to.equal(5)
+      expect(hull).to.equal(10)
+    })
+
+    it('should decrease the value of shield to 0 and hull by 1', () => {
+      ship.damage(11)
+
+      const { hull, shield } = ship.get()
+
+      expect(shield).to.equal(0)
+      expect(hull).to.equal(9)
+    })
+
+    it('should decrease the value of shield and hull to 0', () => {
+      ship.damage(25)
+
+      const { hull, shield } = ship.get()
+
+      expect(shield).to.equal(0)
+      expect(hull).to.equal(0)
     })
   })
 })
