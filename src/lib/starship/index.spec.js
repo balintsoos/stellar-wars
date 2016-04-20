@@ -21,7 +21,18 @@ describe('Starship', () => {
       })
     })
 
-    describe('with config', () => {
+    describe('with valid config', () => {
+      it('should create the interface', () => {
+        const ship = new Starship()
+
+        expect(typeof ship.get).to.equal('function')
+        expect(typeof ship.set).to.equal('function')
+        expect(typeof ship.report).to.equal('function')
+        expect(typeof ship.isDestroyed).to.equal('boolean')
+        expect(typeof ship.attack).to.equal('function')
+        expect(typeof ship.damage).to.equal('function')
+      })
+
       it('should create a starship with the given parameters', () => {
         const ship = new Starship({
           name: 'Enterprise',
@@ -78,6 +89,18 @@ describe('Starship', () => {
           recharge: 20
         })
       })
+    })
+  })
+
+  describe('#isDestroyed', () => {
+    it('should return true if hull is 0', () => {
+      const ship = new Starship({ hull: 0 })
+      expect(ship.isDestroyed).to.equal(true)
+    })
+
+    it('should return false if hull is not 0', () => {
+      const ship = new Starship({ hull: 15 })
+      expect(ship.isDestroyed).to.equal(false)
     })
   })
 

@@ -47,8 +47,9 @@ export default class Starship {
     return this.get()
   }
 
-  refresh(config) {
-    this.set(config)
+  get isDestroyed() {
+    const { hull } = this.get()
+    return hull === 0
   }
 
   attack(enemy) {

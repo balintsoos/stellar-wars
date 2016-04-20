@@ -37,8 +37,9 @@
   },
   "main": "./src/app.js",
   "scripts": {
-    "start": "node ./dist/app",
+    "start": "babel-node ./src/app",
     "build": "babel ./src -d ./dist",
+    "serve": "node ./dist/app",
     "lint": "eslint .; exit 0",
     "unit": "mocha ./src/**/*.spec.js --compilers js:babel-register; exit 0",
     "test": "npm run lint; npm run unit"
