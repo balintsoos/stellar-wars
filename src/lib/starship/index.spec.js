@@ -1,4 +1,5 @@
 import { expect } from 'chai'
+import sinon from 'sinon'
 import Starship from '.'
 import config from './config'
 
@@ -112,6 +113,18 @@ describe('Starship', () => {
 
       expect(shield).to.equal(0)
       expect(hull).to.equal(0)
+    })
+  })
+
+  describe('#attack', () => {
+    it('should call the damage method of enemy ship', () => {
+      const ship = new Starship({ firepower: 5 })
+      const enemy = new Starship({ hull: 10, shield: 10 })
+
+      sinon.spy(enemy, 'damage')
+      ship.attack(enemy)
+
+      expect(enemy.damage.calledWith(5)).to.equal(true)
     })
   })
 })
