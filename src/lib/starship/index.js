@@ -8,16 +8,14 @@ export default class Starship {
     hull = config.hull,
     shield = config.shield,
     firepower = config.firepower,
-    energy = config.energy,
-    recharge = config.recharge
+    energy = config.energy
   } = {}) {
     this.props = {
       name,
       hull,
       shield,
       firepower,
-      energy,
-      recharge
+      energy
     }
   }
 
@@ -30,16 +28,14 @@ export default class Starship {
     hull = this.props.hull,
     shield = this.props.shield,
     firepower = this.props.firepower,
-    energy = this.props.energy,
-    recharge = this.props.recharge
+    energy = this.props.energy
   } = {}) {
     this.props = {
       name,
       hull,
       shield,
       firepower,
-      energy,
-      recharge
+      energy
     }
   }
 

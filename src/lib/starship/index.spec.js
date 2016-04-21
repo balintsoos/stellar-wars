@@ -46,8 +46,7 @@ describe('Starship', () => {
           hull: 54,
           shield: 88,
           firepower: 23,
-          energy: 99,
-          recharge: defaultShip.recharge
+          energy: 99
         })
       })
     })
@@ -77,16 +76,14 @@ describe('Starship', () => {
           name: 'Enterprise',
           hull: 54,
           shield: 88,
-          firepower: 23,
-          energy: 99
+          firepower: 23
         })
         expect(ship.get()).to.deep.equal({
           name: 'Enterprise',
           hull: 54,
           shield: 88,
           firepower: 23,
-          energy: 99,
-          recharge: 20
+          energy: defaultShip.energy
         })
       })
     })
