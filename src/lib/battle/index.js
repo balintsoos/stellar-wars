@@ -12,14 +12,22 @@ export default class Battle {
   }
 
   start(callback) {
-    for (let i = 1; i <= this.turn; i++) {
+    for (let turnCounter = 1; turnCounter <= this.turn; turnCounter++) {
+      if (this.shipA.recharge) {
+        this.shipA.recharge()
+      }
+
       this.shipA.attack(this.shipB)
 
       if (this.shipB.isDestroyed) {
         return callback(null, {
           winner: this.shipA,
-          turn: i
+          turn: turnCounter
         })
+      }
+
+      if (this.shipB.recharge) {
+        this.shipB.recharge()
       }
 
       this.shipB.attack(this.shipA)
@@ -27,7 +35,7 @@ export default class Battle {
       if (this.shipA.isDestroyed) {
         return callback(null, {
           winner: this.shipB,
-          turn: i
+          turn: turnCounter
         })
       }
     }

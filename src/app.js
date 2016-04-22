@@ -1,24 +1,25 @@
 import Starship from './lib/starship'
+import Battlecruiser from './lib/battlecruiser'
 import Battle from './lib/battle'
 
 const enterprise = new Starship({
   name: 'Enterprise',
-  firepower: 1
+  firepower: 5
 })
 
-const borg = new Starship({
-  name: 'Borg Cube'
-})
+const borg = new Battlecruiser()
 
 borg.set({
+  name: 'Borg Cube',
   shield: 0,
   hull: 1000,
-  recharge: 23
+  recharge: 10,
+  energy: 70
 })
 
-enterprise.attack(borg)
+borg.attack(enterprise)
 
-const battle = new Battle(enterprise, borg, 15)
+const battle = new Battle(enterprise, borg, 20)
 
 battle.start((err, result) => {
   if (err) {
