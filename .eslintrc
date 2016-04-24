@@ -2,6 +2,7 @@
   "extends": "airbnb",
   "plugins": [],
   "env": {
+    "node": true,
     "mocha": true
   },
   "rules": {
