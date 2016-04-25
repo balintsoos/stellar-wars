@@ -1,30 +1,52 @@
-import Starship from './lib/starship'
-import Battlecruiser from './lib/battlecruiser'
-import Battle from './lib/battle'
+/**
+ * Module dependencies
+ */
+import express from 'express'
+import bodyParser from 'body-parser'
+import morgan from 'morgan'
+import nconf from 'nconf'
+import compression from 'compression'
+import helmet from 'helmet'
+import chalk from 'chalk'
 
-const enterprise = new Starship({
-  name: 'Enterprise',
-  firepower: 5
-})
+/**
+ * Controllers (route handlers)
+ */
+// TODO
 
-const borg = new Battlecruiser()
+/**
+ * Config loader
+ */
+nconf.argv()
+  .env()
+  .file({ file: './config.json' })
 
-borg.set({
-  name: 'Borg Cube',
-  shield: 0,
-  hull: 1000,
-  recharge: 10,
-  energy: 70
-})
+/**
+ * Create server
+ */
+const app = express()
 
-borg.attack(enterprise)
+/**
+ * Server configuration
+ */
+app.use(helmet())
+app.use(compression())
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-const battle = new Battle(enterprise, borg, 20)
+/*
+ * Routes
+ */
+// TODO
 
-battle.start((err, result) => {
-  if (err) {
-    return console.error(err)
-  }
-
-  console.log(result)
+/*
+ * Start server
+ */
+app.listen(nconf.get('PORT'), () => {
+  console.log(
+    chalk.green('Server listening'),
+    chalk.white('@'),
+    chalk.underline.magenta(`http://localhost:${nconf.get('PORT')}`)
+  )
 })
